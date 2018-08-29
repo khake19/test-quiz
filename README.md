@@ -10,7 +10,6 @@ You're required to use Rails API as backend and frontend. Minimum spec already d
 
 - [Ruby](https://www.ruby-lang.org/en/) 2.5.1
 - [Rails](https://rubyonrails.org/) 5.2.0
-- [PostgreSQL](https://www.postgresql.org/)
 
 It should be rails API only.
 
