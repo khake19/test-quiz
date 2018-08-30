@@ -9,7 +9,7 @@ describe Question, type: :model do
   context "association" do
     describe "Quizzes" do
       it "has_and_belongs_to_many " do
-        expect(Question.reflect_on_association(:quizzes).macro).to eq(:has_and_belongs_to_many)
+        expect(Question.reflect_on_association(:quizzes).try(:macro)).to eq(:has_and_belongs_to_many)
       end
     end
   end
@@ -42,7 +42,7 @@ describe Question, type: :model do
     end
 
     it "is whitespace insensitive" do
-      expect(question_two.check_answer("united states of     america")).to be(true)
+      expect(question_two.check_answer("    united states of america     ")).to be(true)
     end
   end
 end

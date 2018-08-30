@@ -1,7 +1,8 @@
 class QuizAttempt < ApplicationRecord
-  validates_presence_of :correct_answers
-  validates_presence_of :incorrect_answers
+  #Associations:
+  #- add association for quiz
 
-  #add association for quizz
+  #Validations:
+  #- correct_answers and incorrect_answers must be present
 
 end

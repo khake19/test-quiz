@@ -3,7 +3,7 @@ require 'rails_helper'
 describe QuizAttempt, type: :model do
   context "association" do
     it "belongs to a Quizz" do
-      (QuizAttempt.reflect_on_association(:quiz).macro).to eq(:belongs_to)
+      expect(QuizAttempt.reflect_on_association(:quiz).try(:macro)).to eq(:belongs_to)
     end
   end
 
