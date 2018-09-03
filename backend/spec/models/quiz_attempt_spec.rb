@@ -2,9 +2,7 @@ require 'rails_helper'
 
 describe QuizAttempt, type: :model do
   context "association" do
-    it "belongs to a Quizz" do
-      expect(QuizAttempt.reflect_on_association(:quiz).try(:macro)).to eq(:belongs_to)
-    end
+    it { should belong_to(:quiz) }
   end
 
   context 'validations' do

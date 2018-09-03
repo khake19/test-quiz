@@ -5,13 +5,8 @@ describe Quiz, type: :model do
   let(:quiz)       { create(:quiz, questions: question) }
 
   context "association" do
-    it "has_and_belongs_to_many Questions" do
-      expect(Question.reflect_on_association(:questions).try(:macro)).to eq(:has_and_belongs_to_many)
-    end
-
-    it "has_many QuizAttemts" do
-      expect(Quiz.reflect_on_association(:quiz_attempts).try(:macro)).to eq(:has_many)
-    end
+    it { should have_many(:quiz_attempts) }
+    it { should have_and_belong_to_many(:quizzes) }
   end
 
   context 'validations' do

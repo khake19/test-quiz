@@ -7,11 +7,7 @@ describe Question, type: :model do
   let(:quiz_two)     { create(:quiz, questions: [question]) }
 
   context "association" do
-    describe "Quizzes" do
-      it "has_and_belongs_to_many " do
-        expect(Question.reflect_on_association(:quizzes).try(:macro)).to eq(:has_and_belongs_to_many)
-      end
-    end
+    it { should have_and_belong_to_many(:quizzes) }
   end
 
   context "validations" do
