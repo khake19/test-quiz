@@ -71,7 +71,22 @@ const QuizQuestionItem = ({question}) => (
 const Admin = () => (
   <div>
     Update quiz questions here
+
+    { questions.map(question => <AdminQuestionItem question={question} />) }
   </div>
 );
+
+const AdminQuestionItem = ({question}) => (
+  <div>
+    <dl>
+      <dt>{question.question}</dt>
+      <dd>{question.answer}</dd>
+    </dl>
+    <p>
+      <a href="#">Edit</a>
+      <a href="#">Delete</a>
+    </p>
+  </div>
+)
 
 export default App;
