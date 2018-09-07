@@ -42,7 +42,7 @@ describe Api::V1::QuestionsController, type: :controller do
     it 'valid data' do
       post :create, question: build_param.to_json, format: :json
 
-      expect(Question.last.name).to eq(build_param.name)
+      expect(Question.last.content).to eq(build_param.content)
     end
 
     it 'valid data render json message' do
@@ -52,11 +52,11 @@ describe Api::V1::QuestionsController, type: :controller do
     end
 
     it 'invalid data render json' do
-      build_param.name = nil
+      build_param.content = nil
 
       post :create, question: build_param.to_json, format: :json
 
-      expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { name: "can't be blank" }})
+      expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
     end
   end
 
@@ -69,22 +69,22 @@ describe Api::V1::QuestionsController, type: :controller do
     end
 
     it 'valid data' do
-      put :update, id: question.id, question: { name: quote }, format: :json
+      put :update, id: question.id, question: { content: quote }, format: :json
 
       question.reload
-      expect(question.name).to eq(quote)
+      expect(question.content).to eq(quote)
     end
 
     it 'valid data render json message' do
-      put :update, id: question.id, question: { name: quote }, format: :json
+      put :update, id: question.id, question: { content: quote }, format: :json
 
       expect(JSON.parse(response.body)).to eq({message: 'success'})
     end
 
     it 'invalid data render json message' do
-      put :update, id: question.id, question: { name: nil }, format: :json
+      put :update, id: question.id, question: { content: nil }, format: :json
 
-      expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { name: "can't be blank" }})
+      expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
     end
   end
 
