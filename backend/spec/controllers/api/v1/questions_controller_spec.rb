@@ -1,11 +1,17 @@
 require 'rails_helper'
 
 describe Api::V1::QuestionsController, type: :controller do
+  let(:question) { create :question }
+
   describe '#index' do
+    before(:each) do
+      create_list :question, 3
+    end
+
     it 'correct data' do
       get :index, format: :json
 
-      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body).count).to eq(3)
     end
   end
 
@@ -24,7 +30,7 @@ describe Api::V1::QuestionsController, type: :controller do
 
     it 'id is invalid' do
       expect{
-        get :show, format: :json
+        get :show, id: 123456787899, format: :json
       }.to raise_error(ActionController::RoutingError)
     end
   end
@@ -39,6 +45,7 @@ describe Api::V1::QuestionsController, type: :controller do
 
   describe '#create' do
     let(:build_param) { build :question }
+
     it 'valid data' do
       post :create, question: build_param.to_json, format: :json
 
@@ -51,7 +58,7 @@ describe Api::V1::QuestionsController, type: :controller do
       expect(JSON.parse(response.body)).to eq({message: 'success'})
     end
 
-    it 'invalid data render json' do
+    it 'invalid content render json' do
       build_param.content = nil
 
       post :create, question: build_param.to_json, format: :json
@@ -61,12 +68,7 @@ describe Api::V1::QuestionsController, type: :controller do
   end
 
   describe '#update' do
-    let(:question) { build :question }
     let(:quote) { Faker::Matz.quote }
-
-    before(:each) do
-      question.save
-    end
 
     it 'valid data' do
       put :update, id: question.id, question: { content: quote }, format: :json
@@ -92,7 +94,7 @@ describe Api::V1::QuestionsController, type: :controller do
     it 'valid id' do
       delete :destroy, id: question.id, format: :json
 
-      expect(Question.find(id)).to be_nil
+      expect(Question.find(question.id)).to be_nil
     end
 
     it 'valid id render json message' do
@@ -111,6 +113,26 @@ describe Api::V1::QuestionsController, type: :controller do
       delete :destroy, id: '1234', format: :json
 
       expect(JSON.parse{response.body}).to eq({})
+    end
+  end
+
+  describe '#answer' do
+    it 'correct answer' do
+      post :answer, id: question.id, question: { answer: question.answer }, format: :json
+
+      expect(JSON.parse{response.body}).to eq({status: 'success'})
+    end
+
+    it 'incorrect answer' do
+      post :answer, id: question.id, question: { answer: 'sdasd' }, format: :json
+
+      expect(JSON.parse{response.body}).to eq({status: 'success'})
+    end
+
+    it 'nil answer' do
+      post :answer, id: question.id, question: { answer: '' }, format: :json
+
+      expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
     end
   end
 end
