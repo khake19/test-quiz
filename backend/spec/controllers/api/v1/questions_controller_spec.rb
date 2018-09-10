@@ -65,6 +65,11 @@ describe Api::V1::QuestionsController, type: :controller do
 
       expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
     end
+
+    it 'strong attribtues' do
+      should permit(:content, :answer).
+        for(:create)
+    end
   end
 
   describe '#update' do
@@ -87,6 +92,11 @@ describe Api::V1::QuestionsController, type: :controller do
       put :update, id: question.id, question: { content: nil }, format: :json
 
       expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
+    end
+
+    it 'strong attribtues' do
+      should permit(:content, :answer).
+        for(:update)
     end
   end
 

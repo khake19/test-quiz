@@ -78,6 +78,11 @@ describe Api::V1::QuizzesController, type: :controller do
 
       expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { description: "can't be blank" }})
     end
+
+    it 'strong attribtues' do
+      should permit(:name, :description).
+        for(:create)
+    end
   end
 
   describe '#update' do
@@ -106,6 +111,11 @@ describe Api::V1::QuizzesController, type: :controller do
       put :update, id: quiz.id, quiz: { description: '' }, format: :json
 
       expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { description: "can't be blank" }})
+    end
+
+    it 'strong attribtues' do
+      should permit(:name, :description).
+        for(:update)
     end
   end
 
