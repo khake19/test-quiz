@@ -14,7 +14,7 @@ describe Api::V1::QuizAttemptsController, type: :controller do
     it 'correct data' do
       get :index, question_id: question.id, format: :json
 
-      expect(JSON.parse(response.body)).to eq(attempts.to_json)
+      expect(JSON.parse(response.body)).to eq(attempts)
     end
   end
 end
