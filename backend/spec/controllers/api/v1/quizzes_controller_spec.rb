@@ -8,7 +8,7 @@ describe Api::V1::QuizzesController, type: :controller do
       create_list :quiz, 3
     end
 
-    it 'correct data' do
+    it 'render correct number of data' do
       get :index, format: :json
 
       expect(JSON.parse(response.body).count).to eq(3)
@@ -33,7 +33,7 @@ describe Api::V1::QuizzesController, type: :controller do
       expect(response.body).to eq(question_data.to_json)
     end
 
-    it 'id is invalid' do
+    it 'id is not exist' do
       expect{
         get :show, id: 123456787899, format: :json
       }.to raise_error(ActionController::RoutingError)
@@ -41,7 +41,7 @@ describe Api::V1::QuizzesController, type: :controller do
   end
 
   describe '#new' do
-    it 'not found' do
+    it 'no method new' do
       expect{
         get :new, format: :json
       }.to raise_error(ActionController::RoutingError)
@@ -51,7 +51,7 @@ describe Api::V1::QuizzesController, type: :controller do
   describe '#create' do
     let(:build_param) { build :quiz }
 
-    it 'valid data' do
+    it 'able to create quiz' do
       post :create, quiz: build_param.to_json, format: :json
 
       expect(Quiz.last.name).to eq(build_param.name)
@@ -63,7 +63,7 @@ describe Api::V1::QuizzesController, type: :controller do
       expect(JSON.parse(response.body)).to eq({message: 'success'})
     end
 
-    it 'invalid name' do
+    it 'invalid name should return error message' do
       build_param.name = nil
 
       post :create, question: build_param.to_json, format: :json
@@ -71,7 +71,7 @@ describe Api::V1::QuizzesController, type: :controller do
       expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { name: "can't be blank" }})
     end
 
-    it 'invalid description' do
+    it 'invalid description should return error message' do
       build_param.description = nil
 
       post :create, question: build_param.to_json, format: :json
@@ -79,7 +79,7 @@ describe Api::V1::QuizzesController, type: :controller do
       expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { description: "can't be blank" }})
     end
 
-    it 'strong attribtues' do
+    it 'strong attributes' do
       should permit(:name, :description).
         for(:create)
     end
@@ -95,32 +95,32 @@ describe Api::V1::QuizzesController, type: :controller do
       expect(quiz.name).to eq(quote)
     end
 
-    it 'render json' do
+    it 'render json if data is created' do
       put :update, id: quiz.id, quiz: { name: quote }, format: :json
 
       expect(JSON.parse(response.body)).to eq({message: 'success'})
     end
 
-    it 'invalid name' do
+    it 'invalid name should return error message' do
       put :update, id: quiz.id, quiz: { name: '' }, format: :json
 
       expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { name: "can't be blank" }})
     end
 
-    it 'invalid description' do
+    it 'invalid description return error message' do
       put :update, id: quiz.id, quiz: { description: '' }, format: :json
 
       expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { description: "can't be blank" }})
     end
 
-    it 'strong attribtues' do
+    it 'strong attributes' do
       should permit(:name, :description).
         for(:update)
     end
   end
 
   describe '#destroy' do
-    it 'valid id' do
+    it 'valid id can destroy data' do
       delete :destroy, id: quiz.id, format: :json
 
       expect(Quiz.find(quiz.id)).to be_nil

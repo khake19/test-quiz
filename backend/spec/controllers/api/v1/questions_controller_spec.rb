@@ -8,7 +8,7 @@ describe Api::V1::QuestionsController, type: :controller do
       create_list :question, 3
     end
 
-    it 'correct data' do
+    it 'returns a JSON with correct data' do
       get :index, format: :json
 
       expect(JSON.parse(response.body).count).to eq(3)
@@ -16,19 +16,19 @@ describe Api::V1::QuestionsController, type: :controller do
   end
 
   describe '#show' do
-    it 'correct data' do
+    it 'http success correct data' do
       get :show, id: question.id, format: :json
 
       expect(response).to have_http_status(:success)
     end
 
-    it 'correct json' do
+    it 'returns a JSON with correct data' do
       get :show, id: question.id, format: :json
 
       expect(response.body).to eq(question.to_json)
     end
 
-    it 'id is invalid' do
+    it 'not found if id is invalid' do
       expect{
         get :show, id: 123456787899, format: :json
       }.to raise_error(ActionController::RoutingError)
@@ -36,7 +36,7 @@ describe Api::V1::QuestionsController, type: :controller do
   end
 
   describe '#new' do
-    it 'not found' do
+    it 'not found for new method' do
       expect{
         get :new, format: :json
       }.to raise_error(ActionController::RoutingError)
@@ -46,7 +46,7 @@ describe Api::V1::QuestionsController, type: :controller do
   describe '#create' do
     let(:build_param) { build :question }
 
-    it 'valid data' do
+    it 'able to create data' do
       post :create, question: build_param.to_json, format: :json
 
       expect(Question.last.content).to eq(build_param.content)
@@ -66,7 +66,7 @@ describe Api::V1::QuestionsController, type: :controller do
       expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
     end
 
-    it 'strong attribtues' do
+    it 'strong attributes' do
       should permit(:content, :answer).
         for(:create)
     end
@@ -75,7 +75,7 @@ describe Api::V1::QuestionsController, type: :controller do
   describe '#update' do
     let(:quote) { Faker::Matz.quote }
 
-    it 'valid data' do
+    it 'able to update data' do
       put :update, id: question.id, question: { content: quote }, format: :json
 
       question.reload
@@ -94,14 +94,14 @@ describe Api::V1::QuestionsController, type: :controller do
       expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
     end
 
-    it 'strong attribtues' do
+    it 'strong attributes' do
       should permit(:content, :answer).
         for(:update)
     end
   end
 
   describe '#destroy' do
-    it 'valid id' do
+    it 'able to destroy data if id valid' do
       delete :destroy, id: question.id, format: :json
 
       expect(Question.find(question.id)).to be_nil
@@ -113,7 +113,7 @@ describe Api::V1::QuestionsController, type: :controller do
       expect(JSON.parse{response.body}).to eq({status: 'success', id: question.id})
     end
 
-    it 'invalid id' do
+    it 'route error if invalid id' do
       expect{
         delete :destroy, format: :json
       }.to raise_error(ActionController::RoutingError)
@@ -127,19 +127,19 @@ describe Api::V1::QuestionsController, type: :controller do
   end
 
   describe '#answer' do
-    it 'correct answer' do
+    it 'can answer with correct answer' do
       post :answer, id: question.id, question: { answer: question.answer }, format: :json
 
       expect(JSON.parse{response.body}).to eq({status: 'success'})
     end
 
-    it 'incorrect answer' do
+    it 'can answer with incorrect answer' do
       post :answer, id: question.id, question: { answer: 'sdasd' }, format: :json
 
       expect(JSON.parse{response.body}).to eq({status: 'success'})
     end
 
-    it 'nil answer' do
+    it 'render error message if nil answer' do
       post :answer, id: question.id, question: { answer: '' }, format: :json
 
       expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
