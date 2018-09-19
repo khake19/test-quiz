@@ -28,7 +28,7 @@ describe Api::V1::QuestionsController, type: :controller do
       expect(response.body).to eq(question.to_json)
     end
 
-    it 'not found if id is invalid' do
+    it 'raises a routing error if id is invalid' do
       expect{
         get :show, id: 123456787899, format: :json
       }.to raise_error(ActionController::RoutingError)
@@ -36,7 +36,7 @@ describe Api::V1::QuestionsController, type: :controller do
   end
 
   describe '#new' do
-    it 'not found for new method' do
+    it 'raises a routing error' do
       expect{
         get :new, format: :json
       }.to raise_error(ActionController::RoutingError)

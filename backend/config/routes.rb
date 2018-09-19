@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  # TODO: please identify and implement best route structure based on given test file
+  # TODO: Please implement the best route structure according to the scenarios given in the test files.
 end
