@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Api::V1::QuizAttemptsController, type: :controller do
   describe '#index' do
-    let(:question) { create :question }
-    let(:attempts) { create_list :quiz_attempt, 3, question: question }
+    let(:quiz) { create :quiz }
+    let(:attempts) { create_list :quiz_attempt, 3, quiz: quiz }
 
     it 'route not found if question id blank' do
       expect{
@@ -12,7 +12,7 @@ describe Api::V1::QuizAttemptsController, type: :controller do
     end
 
     it 'returns a JSON with correct data' do
-      get :index, question_id: question.id, format: :json
+      get :index, quiz_id: quiz.id, format: :json
 
       expect(JSON.parse(response.body)).to eq(attempts)
     end

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :quiz_attempt do
-    association :question, factory: :question
+    association :quiz, factory: :quiz
 
     correct_answers  { Faker::Number.number(10) }
     incorrect_answers  { Faker::Number.number(5) }
