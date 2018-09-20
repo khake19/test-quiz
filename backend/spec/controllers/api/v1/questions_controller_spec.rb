@@ -70,7 +70,7 @@ describe Api::V1::QuestionsController, type: :controller do
       end
     end
 
-    it 'implement strong attributes' do
+    it 'implements strong attributes' do
       should permit(:content, :answer).
         for(:create)
     end
@@ -139,19 +139,19 @@ describe Api::V1::QuestionsController, type: :controller do
   end
 
   describe '#answer' do
-    it 'can answer with correct answer' do
+    it 'returns JSON with success message when given correct answer' do
       post :answer, id: question.id, question: { answer: question.answer }, format: :json
 
       expect(JSON.parse{response.body}).to eq({status: 'success'})
     end
 
-    it 'can answer with incorrect answer' do
+    it 'returns JSON with success message when given incorrect answer' do
       post :answer, id: question.id, question: { answer: 'sdasd' }, format: :json
 
       expect(JSON.parse{response.body}).to eq({status: 'success'})
     end
 
-    it 'render error message if given blank answer' do
+    it 'render JSON with error message when given blank answer' do
       post :answer, id: question.id, question: { answer: '' }, format: :json
 
       expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
