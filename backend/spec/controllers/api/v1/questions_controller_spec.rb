@@ -52,7 +52,7 @@ describe Api::V1::QuestionsController, type: :controller do
       expect(Question.last.content).to eq(build_param.content)
     end
 
-    context "with valid data" do
+    context 'with valid data' do
       it 'returns success message in JSON format' do
         post :create, question: build_param.to_json
 
@@ -60,7 +60,7 @@ describe Api::V1::QuestionsController, type: :controller do
       end
     end
 
-    context "with invalid data" do
+    context 'with invalid data' do
       it 'returns error message in JSON format' do
         build_param.content = nil
 
@@ -86,7 +86,7 @@ describe Api::V1::QuestionsController, type: :controller do
       expect(question.content).to eq(quote)
     end
 
-    context "with valid data" do
+    context 'with valid data' do
       it 'returns success message in JSON format' do
         put :update, id: question.id, question: { content: quote }, format: :json
 
@@ -94,7 +94,7 @@ describe Api::V1::QuestionsController, type: :controller do
       end
     end
 
-    context "with invalid data" do
+    context 'with invalid data' do
       it 'invalid data render json message' do
         put :update, id: question.id, question: { content: nil }, format: :json
 
@@ -115,7 +115,7 @@ describe Api::V1::QuestionsController, type: :controller do
       expect(Question.find(question.id)).to be_nil
     end
 
-    context "with valid id" do
+    context 'with valid id' do
       it 'returns success message and deleted id in JSON format' do
         delete :destroy, id: question.id, format: :json
 
@@ -123,7 +123,7 @@ describe Api::V1::QuestionsController, type: :controller do
       end
     end
 
-    context "with invalid id" do
+    context 'with invalid id' do
       it 'raises routing error' do
         expect{
           delete :destroy, format: :json
@@ -139,22 +139,28 @@ describe Api::V1::QuestionsController, type: :controller do
   end
 
   describe '#answer' do
-    it 'returns JSON with success message when given correct answer' do
-      post :answer, id: question.id, question: { answer: question.answer }, format: :json
+    context 'given correct answer' do
+      it 'returns JSON with success message' do
+        post :answer, id: question.id, question: { answer: question.answer }, format: :json
 
-      expect(JSON.parse{response.body}).to eq({status: 'success'})
+        expect(JSON.parse{response.body}).to eq({status: 'success'})
+      end
     end
 
-    it 'returns JSON with success message when given incorrect answer' do
-      post :answer, id: question.id, question: { answer: 'sdasd' }, format: :json
+    context 'given incorrect answer' do
+      it 'returns JSON with success message' do
+        post :answer, id: question.id, question: { answer: 'sdasd' }, format: :json
 
-      expect(JSON.parse{response.body}).to eq({status: 'success'})
+        expect(JSON.parse{response.body}).to eq({status: 'success'})
+      end
     end
 
-    it 'render JSON with error message when given blank answer' do
-      post :answer, id: question.id, question: { answer: '' }, format: :json
+    context 'given blank answer' do
+      it 'render JSON with error message' do
+        post :answer, id: question.id, question: { answer: '' }, format: :json
 
-      expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
+        expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
+      end
     end
   end
 end
