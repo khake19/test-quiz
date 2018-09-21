@@ -1,6 +1,5 @@
 class Question < ApplicationRecord
   #Associations:
-  has_many :user_answers
   #- add association for quizzes
 
   #Validations:
