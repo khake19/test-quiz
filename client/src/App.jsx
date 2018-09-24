@@ -1,3 +1,11 @@
+/**
+ *  This file contains the client-side implementation of Quiz Master.
+ *
+ *  Feel free to extract the application elements to their own files.
+ *
+ *  Search for the string "TODO:" to check which parts need to be implemented
+ **/
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -25,6 +33,11 @@ const App = () => (
   </Router>
 );
 
+/**
+ *  These questions are currently hardcoded.
+ *
+ *  TODO: Get the question list from the API
+ **/
 const questions = [
   {
     id: 1,
@@ -56,6 +69,11 @@ const Quiz = () => (
     <form>
       { questions.map(question => <QuizQuestionItem question={question} />) }
 
+      {/**
+          TODO:
+
+          Pressing "Submit" button should send the answers to the API
+        **/}
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -83,7 +101,17 @@ const AdminQuestionItem = ({question}) => (
       <dd>{question.answer}</dd>
     </dl>
     <p>
+      {/**
+          TODO:
+
+          Pressing "Edit" button should allow user to edit questions and answers
+        **/}
       <a href="#">Edit</a>
+      {/**
+          TODO:
+
+          Pressing "Delete" button should remove the question
+        **/}
       <a href="#">Delete</a>
     </p>
   </div>
