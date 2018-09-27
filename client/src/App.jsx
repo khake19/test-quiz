@@ -76,6 +76,17 @@ const Quiz = ({question}) => (
 
           Pressing "Submit" button should send the answers to the API
         **/}
+
+      <div class="result">
+        Correct
+        {/**
+            TODO:
+
+            Once user submits an answer,
+            we should show if their answer it correct or incorrect.
+          **/}
+      </div>
+
       <button type="submit" class="submit">Submit</button>
     </form>
   </div>

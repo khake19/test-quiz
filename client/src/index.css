@@ -13,3 +13,9 @@
 .submit {
   /* TODO: Write the style for the submit button */
 }
+
+.result {
+  display: none;
+
+  /* TODO: Write the style for the quiz result */
+}
