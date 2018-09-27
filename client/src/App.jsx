@@ -30,11 +30,23 @@ const App = () => (
  *
  *  TODO: Get the question list from the API
  **/
-const sampleQuestion = {
-  id: 1,
-  question: "What is the capital of Malaysia?",
-  answer: "Kuala Lumpur",
-}
+const questions = [
+  {
+    id: 1,
+    question: "What is the capital of Malaysia?",
+    answer: "Kuala Lumpur",
+  },
+  {
+    id: 2,
+    question: "How many letters are there in the English alphabet?",
+    answer: "26",
+  },
+  {
+    id: 3,
+    question: "Who are snow white's friends?",
+    answer: "7 dwarves",
+  },
+]
 
 const Home = () => (
   <div>
@@ -52,11 +64,12 @@ const Home = () => (
 const Quiz = ({question}) => (
   <div class="quiz">
     <form>
-      <strong>Question</strong>
-      <p>{sampleQuestion.question}</p>
+      {/**
+          TODO:
 
-      <strong>Answer</strong>
-      <input type="text"/>
+          Quiz should show one question at a time and in random order.
+        **/}
+      <QuizQuestionItem question={questions[0]} />
 
       {/**
           TODO:
@@ -68,45 +81,52 @@ const Quiz = ({question}) => (
   </div>
 );
 
+const QuizQuestionItem = ({question}) => (
+  <div>
+    <strong>Question</strong>
+    <p>{question.question}</p>
+
+    <strong>Answer</strong>
+    <input type="text"/>
+  </div>
+)
+
 const Admin = () => (
   <div>
-    <AdminQuestionItem question={sampleQuestion} />
-  </div>
-);
-
-const AdminQuestionItem = ({question}) => (
-  <div>
-    <table>
+    <table border="1">
       <tr>
         <th>Question</th>
         <th>Answer</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
-      <tr>
-        <td>{question.question}</td>
-        <td>{question.answer}</td>
-        <td>
-          {/**
-              TODO:
-
-              Pressing "Edit" button should allow user to edit questions and answers
-            **/}
-          <a href="#">Edit</a>
-        </td>
-        <td>
-          {/**
-              TODO:
-
-              Pressing "Delete" button should remove the question
-            **/}
-          <a href="#">Delete</a>
-        </td>
-      </tr>
+      { questions.map(question => <AdminQuestionItem question={question} />) }
     </table>
-
     <a href="#">Add question</a>
   </div>
+);
+
+const AdminQuestionItem = ({question}) => (
+  <tr>
+    <td>{question.question}</td>
+    <td>{question.answer}</td>
+    <td>
+      {/**
+          TODO:
+
+          Pressing "Edit" button should allow user to edit questions and answers
+        **/}
+      <a href="#">Edit</a>
+    </td>
+    <td>
+      {/**
+          TODO:
+
+          Pressing "Delete" button should remove the question
+        **/}
+      <a href="#">Delete</a>
+    </td>
+  </tr>
 )
 
 export default App;
