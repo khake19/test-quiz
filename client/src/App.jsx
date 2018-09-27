@@ -12,19 +12,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const App = () => (
   <Router>
     <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/quiz">Quiz</Link>
-        </li>
-        <li>
-          <Link to="/admin">Admin</Link>
-        </li>
-      </ul>
-
-      <hr />
+      <div class="header">
+        <Link to="/" class="logo">Quipper</Link>
+      </div>
 
       <Route exact path="/" component={Home} />
       <Route path="/quiz" component={Quiz} />
@@ -38,59 +28,49 @@ const App = () => (
  *
  *  TODO: Get the question list from the API
  **/
-const questions = [
-  {
-    id: 1,
-    question: "What is the capital of Malaysia?",
-    answer: "Kuala Lumpur",
-  },
-  {
-    id: 2,
-    question: "How many letters are there in the English alphabet?",
-    answer: "26",
-  },
-  {
-    id: 3,
-    question: "Who are snow white's friends?",
-    answer: "7 dwarves",
-  },
-]
+const sampleQuestion = {
+  id: 1,
+  question: "What is the capital of Malaysia?",
+  answer: "Kuala Lumpur",
+}
 
 const Home = () => (
   <div>
-    Welcome to Quiz master
+    <ul>
+      <li>
+        <Link to="/quiz">Answer questions</Link>
+      </li>
+      <li>
+        <Link to="/admin">Manage questions</Link>
+      </li>
+    </ul>
   </div>
 );
 
-const Quiz = () => (
-  <div>
-    Here's your quiz!
-
+const Quiz = ({question}) => (
+  <div class="quiz">
     <form>
-      { questions.map(question => <QuizQuestionItem question={question} />) }
+      <strong>Question</strong>
+      <p>{sampleQuestion.question}</p>
+
+      <strong>Answer</strong>
+      <input type="text"/>
 
       {/**
           TODO:
 
           Pressing "Submit" button should send the answers to the API
         **/}
-      <button type="submit">Submit</button>
+      <button type="submit" class="submit">Submit</button>
     </form>
   </div>
 );
-
-const QuizQuestionItem = ({question}) => (
-  <div>
-    <p>{question.question}</p>
-    <input type="text"/>
-  </div>
-)
 
 const Admin = () => (
   <div>
     Update quiz questions here
 
-    { questions.map(question => <AdminQuestionItem question={question} />) }
+    <AdminQuestionItem question={sampleQuestion} />)
   </div>
 );
 
