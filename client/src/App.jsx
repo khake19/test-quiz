@@ -12,19 +12,11 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const App = () => (
   <Router>
     <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/quiz">Quiz</Link>
-        </li>
-        <li>
-          <Link to="/admin">Admin</Link>
-        </li>
-      </ul>
-
-      <hr />
+      <div class="header">
+        <Link to="/" class="logo">
+          <h1>Quipper</h1>
+        </Link>
+      </div>
 
       <Route exact path="/" component={Home} />
       <Route path="/quiz" component={Quiz} />
@@ -58,63 +50,94 @@ const questions = [
 
 const Home = () => (
   <div>
-    Welcome to Quiz master
+    <ul>
+      <li>
+        <Link to="/quiz">Answer questions</Link>
+      </li>
+      <li>
+        <Link to="/admin">Manage questions</Link>
+      </li>
+    </ul>
   </div>
 );
 
-const Quiz = () => (
-  <div>
-    Here's your quiz!
-
+const Quiz = ({question}) => (
+  <div class="quiz">
     <form>
-      { questions.map(question => <QuizQuestionItem question={question} />) }
+      {/**
+          TODO:
+
+          Quiz should show one question at a time and in random order.
+        **/}
+      <QuizQuestionItem question={questions[0]} />
 
       {/**
           TODO:
 
           Pressing "Submit" button should send the answers to the API
         **/}
-      <button type="submit">Submit</button>
+
+      <div class="result">
+        Correct
+        {/**
+            TODO:
+
+            Once user submits an answer,
+            we should show if their answer it correct or incorrect.
+          **/}
+      </div>
+
+      <button type="submit" class="submit">Submit</button>
     </form>
   </div>
 );
 
 const QuizQuestionItem = ({question}) => (
   <div>
+    <strong>Question</strong>
     <p>{question.question}</p>
+
+    <strong>Answer</strong>
     <input type="text"/>
   </div>
 )
 
 const Admin = () => (
   <div>
-    Update quiz questions here
-
-    { questions.map(question => <AdminQuestionItem question={question} />) }
+    <table border="1">
+      <tr>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      { questions.map(question => <AdminQuestionItem question={question} />) }
+    </table>
+    <a href="#">Add question</a>
   </div>
 );
 
 const AdminQuestionItem = ({question}) => (
-  <div>
-    <dl>
-      <dt>{question.question}</dt>
-      <dd>{question.answer}</dd>
-    </dl>
-    <p>
+  <tr>
+    <td>{question.question}</td>
+    <td>{question.answer}</td>
+    <td>
       {/**
           TODO:
 
           Pressing "Edit" button should allow user to edit questions and answers
         **/}
       <a href="#">Edit</a>
+    </td>
+    <td>
       {/**
           TODO:
 
           Pressing "Delete" button should remove the question
         **/}
       <a href="#">Delete</a>
-    </p>
-  </div>
+    </td>
+  </tr>
 )
 
 export default App;
