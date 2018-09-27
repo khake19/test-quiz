@@ -13,7 +13,9 @@ const App = () => (
   <Router>
     <div>
       <div class="header">
-        <Link to="/" class="logo">Quipper</Link>
+        <Link to="/" class="logo">
+          <h1>Quipper</h1>
+        </Link>
       </div>
 
       <Route exact path="/" component={Home} />
@@ -68,32 +70,42 @@ const Quiz = ({question}) => (
 
 const Admin = () => (
   <div>
-    Update quiz questions here
-
-    <AdminQuestionItem question={sampleQuestion} />)
+    <AdminQuestionItem question={sampleQuestion} />
   </div>
 );
 
 const AdminQuestionItem = ({question}) => (
   <div>
-    <dl>
-      <dt>{question.question}</dt>
-      <dd>{question.answer}</dd>
-    </dl>
-    <p>
-      {/**
-          TODO:
+    <table>
+      <tr>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      <tr>
+        <td>{question.question}</td>
+        <td>{question.answer}</td>
+        <td>
+          {/**
+              TODO:
 
-          Pressing "Edit" button should allow user to edit questions and answers
-        **/}
-      <a href="#">Edit</a>
-      {/**
-          TODO:
+              Pressing "Edit" button should allow user to edit questions and answers
+            **/}
+          <a href="#">Edit</a>
+        </td>
+        <td>
+          {/**
+              TODO:
 
-          Pressing "Delete" button should remove the question
-        **/}
-      <a href="#">Delete</a>
-    </p>
+              Pressing "Delete" button should remove the question
+            **/}
+          <a href="#">Delete</a>
+        </td>
+      </tr>
+    </table>
+
+    <a href="#">Add question</a>
   </div>
 )
 
