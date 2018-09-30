@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Quiz, type: :model do
+describe Quiz, type: :model, :"level-two" => true do
   let(:question)   { create(:question, content: "5+5", answer: "10" ) }
   let(:quiz)       { create(:quiz, questions: question) }
 
