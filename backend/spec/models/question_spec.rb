@@ -6,11 +6,11 @@ describe Question, type: :model do
   let(:quiz)         { create(:quiz, questions: [question, question_two]) }
   let(:quiz_two)     { create(:quiz, questions: [question]) }
 
-  context "association", level_two: true do
+  context "association", level_two: true, level_three: true do
     it { should have_and_belong_to_many(:quizzes) }
   end
 
-  context "validations", level_one: true do
+  context "validations", level_one: true, level_two: true, level_three: true do
     it "presence of content" do
       should validate_presence_of(:content)
     end
@@ -20,7 +20,7 @@ describe Question, type: :model do
     end
   end
 
-  describe "#check_answer", level_one: true do
+  describe "#check_answer", level_one: true, level_two: true, level_three: true do
     it "is false if the answer is not valid" do
       expect(question.check_answer(100)).to be(false)
     end

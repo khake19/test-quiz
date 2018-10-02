@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::V1::QuestionsController, type: :controller, level_one: true do
+describe Api::V1::QuestionsController, type: :controller, level_one: true, level_two: true, level_three: true do
   let(:question) { create :question }
 
   describe '#index' do
