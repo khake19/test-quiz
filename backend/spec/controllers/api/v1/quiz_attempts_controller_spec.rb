@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::V1::QuizAttemptsController, type: :controller do
+describe Api::V1::QuizAttemptsController, type: :controller, level_three: true do
   describe '#index' do
     let(:quiz) { create :quiz }
     let(:attempts) { create_list :quiz_attempt, 3, quiz: quiz }

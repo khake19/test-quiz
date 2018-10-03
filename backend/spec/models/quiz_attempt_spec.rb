@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe QuizAttempt, type: :model do
+describe QuizAttempt, type: :model, level_three: true do
   context "association" do
     it { should belong_to(:quiz) }
   end
