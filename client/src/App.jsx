@@ -12,8 +12,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const App = () => (
   <Router>
     <div>
-      <div class="header">
-        <Link to="/" class="logo">
+      <div className="header">
+        <Link to="/" className="logo">
           <h1>Quipper</h1>
         </Link>
       </div>
@@ -62,7 +62,7 @@ const Home = () => (
 );
 
 const Quiz = ({question}) => (
-  <div class="quiz">
+  <div className="quiz">
     <form>
       {/**
           TODO:
@@ -77,7 +77,7 @@ const Quiz = ({question}) => (
           Pressing "Submit" button should send the answers to the API
         **/}
 
-      <div class="result">
+      <div className="result">
         Correct
         {/**
             TODO:
@@ -87,7 +87,7 @@ const Quiz = ({question}) => (
           **/}
       </div>
 
-      <button type="submit" class="submit">Submit</button>
+      <button type="submit" className="submit">Submit</button>
     </form>
   </div>
 );
