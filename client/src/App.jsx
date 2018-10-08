@@ -12,8 +12,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const App = () => (
   <Router>
     <div>
-      <div class="header">
-        <Link to="/" class="logo">
+      <div className="header">
+        <Link to="/" className="logo">
           <h1>Quipper</h1>
         </Link>
       </div>
@@ -33,17 +33,17 @@ const App = () => (
 const questions = [
   {
     id: 1,
-    question: "What is the capital of Malaysia?",
+    content: "What is the capital of Malaysia?",
     answer: "Kuala Lumpur",
   },
   {
     id: 2,
-    question: "How many letters are there in the English alphabet?",
+    content: "How many letters are there in the English alphabet?",
     answer: "26",
   },
   {
     id: 3,
-    question: "Who are snow white's friends?",
+    content: "Who are snow white's friends?",
     answer: "7 dwarves",
   },
 ]
@@ -62,7 +62,7 @@ const Home = () => (
 );
 
 const Quiz = ({question}) => (
-  <div class="quiz">
+  <div className="quiz">
     <form>
       {/**
           TODO:
@@ -77,7 +77,7 @@ const Quiz = ({question}) => (
           Pressing "Submit" button should send the answers to the API
         **/}
 
-      <div class="result">
+      <div className="result">
         Correct
         {/**
             TODO:
@@ -87,7 +87,7 @@ const Quiz = ({question}) => (
           **/}
       </div>
 
-      <button type="submit" class="submit">Submit</button>
+      <button type="submit" className="submit">Submit</button>
     </form>
   </div>
 );
@@ -95,7 +95,7 @@ const Quiz = ({question}) => (
 const QuizQuestionItem = ({question}) => (
   <div>
     <strong>Question</strong>
-    <p>{question.question}</p>
+    <p>{question.content}</p>
 
     <strong>Answer</strong>
     <input type="text"/>
@@ -119,7 +119,7 @@ const Admin = () => (
 
 const AdminQuestionItem = ({question}) => (
   <tr>
-    <td>{question.question}</td>
+    <td>{question.content}</td>
     <td>{question.answer}</td>
     <td>
       {/**
