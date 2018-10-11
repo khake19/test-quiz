@@ -6,6 +6,6 @@
     "docsify-cli": "^4.2.1"
   },
   "scripts": {
-    "start": "./node_modules/.bin/docsify serve docs -o -p 3030"
+    "start": "./node_modules/.bin/docsify serve -o -p 3030"
   }
 }
