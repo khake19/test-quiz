@@ -2,7 +2,7 @@
 
 Welcome to Quipper's web engineer technical exam.
 
-If you are seeing this as plain markdown, follow the instructions below to see all the exam specifications.
+?> *If you are seeing this as plain markdown, follow the instructions below to see all the exam specifications.*
 
 If using `npm`:
 
