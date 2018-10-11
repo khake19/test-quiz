@@ -5,7 +5,11 @@ default: &default
 
 development:
   <<: *default
+<% if ENV.key?('DATABASE_URL') %>
+  url: <%= ENV['DATABASE_URL'] %>
+<% else %>
   database: quiz-master-dev
+<% end %>
 
 test:
   <<: *default
