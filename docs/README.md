@@ -1,30 +1,17 @@
 # Quiz Master!
 
-Quiz Master is Quipper's technical test.
+Welcome to Quipper's web engineer technical exam.
 
-# Components
+If you are seeing this as plain markdown, follow the instructions below to see all the exam specifications.
 
-You're required to use Rails API as backend and frontend. Minimum spec already defined in each component. Improvements are welcomed and encouraged. We value passion and creativity!
+// TODO: Add docsify setup.
 
-## Backend
+!> **Only proceed to the next steps once you have performed the steps above**
 
-- [Ruby](https://www.ruby-lang.org/en/) 2.5.1
-- [Rails](https://rubyonrails.org/) 5.2.0
+## Setup components
 
-It should be rails API only.
+The exam app has 2 components, `client` and `backend`. Check the setup instructions by clicking the links under **Setup** in the sidebar.
 
-## Frontend
+## Exam specifications
 
-## Docker
-
-We provide `docker-compose.yml`, but you're not required to use `docker`.
-
-To bootstrap and run dockerized version, you can do:
-
-```bash
-docker-compose run backend rake db:create
-docker-compose run backend rake db:migrate
-docker-compose run backend rake db:seed
-
-docker-compose up # will run application on localhost:3000
-```
+Under **User Stories**, you can see the specification for each exam level.
