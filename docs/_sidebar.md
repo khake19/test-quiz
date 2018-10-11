@@ -1,3 +1,7 @@
+## Setup
+- [Backend](/setup/backend.md)
+- [Client](/setup/client.md)
+
 ## User Stories
 
 - [Level 1](/user_stories/level_one.md)
