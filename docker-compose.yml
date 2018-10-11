@@ -6,11 +6,4 @@ services:
     volumes:
       - ./backend:/myapp/backend
     ports:
-      - "3000:3000"
-  client:
-    build: ./client
-    command: npm start
-    volumes:
-      - ./client:/myapp/client
-    ports:
-      - "8080:8080"
+      - "3001:3000"
