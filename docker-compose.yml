@@ -18,13 +18,14 @@ services:
       - ./backend:/app
     ports:
       - 3000:3000
-  #client:
-    #build: ./client
-    #command: npm start
-    #volumes:
-      #- ./client:/myapp/client
-    #ports:
-      #- "8080:8080"
+  client:
+    build: ./client
+    command: yarn start
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    ports:
+      - 8080:8080
   docs:
     build: ./docs
     command: ./node_modules/.bin/docsify serve -p 3030 -b 0.0.0.0
