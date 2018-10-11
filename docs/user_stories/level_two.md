@@ -15,6 +15,8 @@ I think that’s all! Let us know when it's done! Thanks!
 *   Implement a page for the user to create quizzes out of questions
 *   Show a list of available quizzes and allow user to select one of those to answer
 
+!> Once you finish, please remember to `commit && push` to your branch.
+
 ### /client
 
 *   Provide view for creating, reading, updating, and deleting quizzes ![mockup](../img/quiz_catalog.png) ![mockup](../img/add_edit_quiz.png)
@@ -24,8 +26,8 @@ I think that’s all! Let us know when it's done! Thanks!
 ### /backend
 
 *   Provide quiz endpoints to `create, read, update and delete` via API.
-*   Once again, we have already set up the tests for you. Please run the test suite using `bundle exec rspec --tag level_two` and do your best to cover all the specs.
+*   Once again, we have already set up the tests for you.
 
-Once you finish, please remember to `commit && push` to your branch.
+!> Run the test suite using `bundle exec rspec --tag level_two` and do your best to cover all the specs.
 
 [Next challenge](user_stories/level_three.md)
