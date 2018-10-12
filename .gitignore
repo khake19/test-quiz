@@ -29,3 +29,6 @@
 
 # Ignore editor tempfiles
 *.sw?
+
+# OS
+*.DS_Store

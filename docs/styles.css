@@ -1,0 +1,11 @@
+body {
+  font-family: Open Sans;
+}
+
+.app-name-link img {
+  width: 150px;
+}
+
+strong {
+  font-weight: 700 !important;
+}
