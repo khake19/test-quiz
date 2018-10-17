@@ -4,23 +4,14 @@ Welcome! You must be the new one! You know the _Chief Technology Officer_? Well,
 
 ### Objectives
 
-*   Implement a way for the user to create, read, update, and delete questions
-*   Implement a quiz view for the user to view and answer the questions one at a time and in **random** order
-*   Once the user provides an answer and clicks submits, the app should give immediate feedback on whether the answer provided is **correct** or **incorrect**
-
-!>  Once you finish, please remember to `commit && push` to your branch.
-
-### /client
-
-*   Open `client/src/App.jsx` and give it a read. You will find out there what you need to do.
-*   Also, you need to style the `Quiz view`. Below is the mockup which indicates how the view should look like.
-
-![question mockup](../img/question.png)
-
-### /backend
-
-*   Please provide a question catalog and allow to `create, read, update and delete` questions via API.
-*   We work using test-driven development so we have already set up the tests for you.
+*   Implement endpoints for the user to `create`, `read`, `update`, and `delete` questions
+    *   You do **NOT** need to implement a view for this! You can populate data for your app by running these endpoints through your terminal.
+    *   We work using test-driven development and we have already set up the tests for you. You can check out `backend/spec/controllers/api/v1/questions_controller_spec.rb` to see what's expected of you in your implementation of the endpoints above.
+*   Implement a quiz view for the user to view and answer the questions **one at a time** and in **random** order
+    *   `client/src/App.jsx` is the main file you'll need to work on to implement the view. There are comments written there to guide you on what you need to do.
+    *   We want to see your styling skills! Below is the mockup which indicates how the quiz should look like.
+    ![question mockup](../img/question.png)
+    *   Implement an answer-checking logic in the backend so that once the user provides an answer and submits, the app shall give immediate feedback on whether the answer provided is **correct** or **incorrect**
 
 !> Run the test suite using `bundle exec rspec --tag level_one` and do your best to cover all the specs.
 
