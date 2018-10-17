@@ -20,7 +20,6 @@ const App = () => (
 
       <Route exact path="/" component={Home} />
       <Route path="/quiz" component={Quiz} />
-      <Route path="/admin" component={Admin} />
     </div>
   </Router>
 );
@@ -53,9 +52,6 @@ const Home = () => (
     <ul>
       <li>
         <Link to="/quiz">Answer questions</Link>
-      </li>
-      <li>
-        <Link to="/admin">Manage questions</Link>
       </li>
     </ul>
   </div>
@@ -100,44 +96,6 @@ const QuizQuestionItem = ({question}) => (
     <strong>Answer</strong>
     <input type="text"/>
   </div>
-)
-
-const Admin = () => (
-  <div>
-    <table border="1">
-      <tr>
-        <th>Question</th>
-        <th>Answer</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-      { questions.map(question => <AdminQuestionItem question={question} />) }
-    </table>
-    <a href="#">Add question</a>
-  </div>
-);
-
-const AdminQuestionItem = ({question}) => (
-  <tr>
-    <td>{question.content}</td>
-    <td>{question.answer}</td>
-    <td>
-      {/**
-          TODO:
-
-          Pressing "Edit" button should allow user to edit questions and answers
-        **/}
-      <a href="#">Edit</a>
-    </td>
-    <td>
-      {/**
-          TODO:
-
-          Pressing "Delete" button should remove the question
-        **/}
-      <a href="#">Delete</a>
-    </td>
-  </tr>
 )
 
 export default App;
