@@ -25,8 +25,6 @@ In addition to that, we would like to give ability to the user to select a quiz 
 
     ![question mockup](../img/question.png)
 
-!> Once you finish, please remember to `commit && push` to your branch.
-
 !> Run the backend test suite using `bundle exec rspec --tag level_two` and do your best to cover all the specs.
 
 [Next challenge](user_stories/level_three.md)
