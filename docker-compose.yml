@@ -13,7 +13,9 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://quizmaster:qU1zMast3R@db:5432/quiz-master-dev
+      DATABASE_HOST: db
+      DATABASE_USERNAME: quizmaster
+      DATABASE_PASSWORD: qU1zMast3R
     volumes:
       - ./backend:/app
     ports:

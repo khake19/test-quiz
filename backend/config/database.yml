@@ -1,15 +1,15 @@
 default: &default
+  host: <%= ENV.fetch('DATABASE_HOST', 'localhost') %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: <%= ENV.fetch('DATABASE_PORT', '5432') %>
   adapter: postgresql
   encoding: unicode
   pool: 5
 
 development:
   <<: *default
-<% if ENV.key?('DATABASE_URL') %>
-  url: <%= ENV['DATABASE_URL'] %>
-<% else %>
   database: quiz-master-dev
-<% end %>
 
 test:
   <<: *default
