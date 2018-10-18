@@ -28,10 +28,10 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       expect(response.body).to eq(question.to_json)
     end
 
-    it 'raises a routing error if id is invalid' do
-      expect{
-        get :show, params: { id: 123456787899 }, format: :json
-      }.to raise_error(ActiveRecord::RecordNotFound)
+    it 'returns with HTTP status not found if id is invalid' do
+      get :show, params: { id: 123456787899 }, format: :json
+     
+      expect(response).to have_http_status(:not_found)
     end
   end
 
