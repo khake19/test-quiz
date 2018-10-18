@@ -29,4 +29,4 @@ bundle exec run rails db:create db:migrate db:seed
 bundle exec rails server
 ```
 
-Backend server is now available at `localhost:3000`.
+Backend server is now available at [localhost:3000](http://localhost:3000).

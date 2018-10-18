@@ -30,4 +30,4 @@ or
 yarn start
 ```
 
-React application is now available at `localhost:8080`.
+React application is now available at [localhost:8080](http://localhost:8080).
