@@ -11,7 +11,7 @@ describe Api::V1::QuizAttemptsController, type: :controller, level_three: true d
     end
 
     it 'returns a JSON with correct data' do
-      get :index, quiz_id: quiz.id, format: :json
+      get :index, params: { quiz_id: quiz.id }, format: :json
 
       expect(JSON.parse(response.body)).to eq(attempts)
     end
