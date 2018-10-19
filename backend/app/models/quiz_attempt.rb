@@ -1,3 +1,5 @@
+#- [LVL3-QUIZ]
+
 class QuizAttempt < ApplicationRecord
   #Associations:
   #- add association for quiz

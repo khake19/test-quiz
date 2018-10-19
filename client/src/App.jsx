@@ -26,7 +26,7 @@ const App = () => (
 
 /**
  *  These questions are currently hardcoded.
- *
+ *  [LVL1-QUIZ]
  *  TODO: Get the question list from the API
  **/
 const questions = [
@@ -62,14 +62,12 @@ const Quiz = ({question}) => (
     <form>
       {/**
           TODO:
-
           Quiz should show one question at a time and in random order.
         **/}
       <QuizQuestionItem question={questions[0]} />
 
       {/**
           TODO:
-
           Pressing "Submit" button should send the answers to the API
         **/}
 
@@ -77,7 +75,6 @@ const Quiz = ({question}) => (
         Correct
         {/**
             TODO:
-
             Once user submits an answer,
             we should show if their answer it correct or incorrect.
           **/}

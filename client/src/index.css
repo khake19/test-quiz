@@ -1,3 +1,4 @@
+/* [LVL1-QUIZ] */
 .header {
   /* TODO: Write the style for the header div */
 }
@@ -6,12 +7,12 @@
   /* TODO: Write the style for the logo image */
 }
 
-.quiz {
-  /* TODO: Write the style for the quiz div */
-}
-
 .submit {
   /* TODO: Write the style for the submit button */
+}
+
+.quiz {
+  /* TODO: Write the style for the quiz div */
 }
 
 .result {
