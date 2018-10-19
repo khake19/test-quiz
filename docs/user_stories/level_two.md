@@ -10,6 +10,8 @@ In addition to that, we would like to give ability to the user to select a quiz 
 
 ### Objectives
 
+!> Search for the `[LVL2-QUIZ]` tags across the project. They will help you as a guide to focus on this level.
+
 *   Implement a view for the user to create quizzes out of questions
     *   Provide API endpoints to `create`, `read`, `update` and `delete` quizzes. These endpoints shall then be called by the view.
 
@@ -24,8 +26,6 @@ In addition to that, we would like to give ability to the user to select a quiz 
     *   Selecting a quiz will show the questions within it one at a time and in random order
 
     ![question mockup](../img/question.png)
-
-!> Search for the `[LVL2-QUIZ]` tags across the project; They will help you as a guide to focus on this level.
 
 !> Run the backend test suite using `bundle exec rspec --tag level_two` and do your best to cover all the specs.
 
