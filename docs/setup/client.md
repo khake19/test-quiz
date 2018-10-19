@@ -4,6 +4,8 @@
 
 # Setup
 
+!> If you have [setup using Docker](/), you can skip these setup steps.
+
 Move to `client/` directory and perform the following setup steps
 
 ## Install dependencies
@@ -30,4 +32,4 @@ or
 yarn start
 ```
 
-React application is now available at `localhost:8080`.
+React application is now available at http://localhost:8080.
