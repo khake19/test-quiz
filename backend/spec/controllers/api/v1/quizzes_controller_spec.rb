@@ -28,7 +28,7 @@ describe Api::V1::QuizzesController, type: :controller, level_two: true, level_t
     end
 
     it 'include question data' do
-      get :show, params { id: quiz.id }, format: :json
+      get :show, params: { id: quiz.id }, format: :json
 
       expect(JSON.parse(response.body)).to include(question_data.as_json)
     end
