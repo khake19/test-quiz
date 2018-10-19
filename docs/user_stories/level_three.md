@@ -13,4 +13,6 @@ When a user finishes a quiz, let’s score it and compare it agains all the othe
 
 ![results mockup](../img/results.png)
 
+!> Search for the `[LVL3-QUIZ]` tags across the project; They will help you as a guide to focus on this level.
+
 !> Run the test suite using `bundle exec rspec --tag level_three` and do your best to cover all the specs.
