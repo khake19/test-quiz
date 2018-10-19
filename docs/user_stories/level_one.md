@@ -13,6 +13,8 @@ Welcome! You must be the new one! You know the _Chief Technology Officer_? Well,
     ![question mockup](../img/question.png)
     *   Implement an answer-checking logic in the backend so that once the user provides an answer and submits, the app shall give immediate feedback on whether the answer provided is **correct** or **incorrect**
 
+!> Search for the `[LVL1-QUIZ]` tags across the project; They will help you as a guide to focus on this level.
+
 !> Run the backend test suite using `bundle exec rspec --tag level_one` and do your best to cover all the specs.
 
 [Next challenge](user_stories/level_two.md)

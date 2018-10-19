@@ -1,21 +1,21 @@
 .header {
-  /* TODO: Write the style for the header div */
+  /* TODO: [LVL1-QUIZ] Write the style for the header div */
 }
 
 .logo {
-  /* TODO: Write the style for the logo image */
-}
-
-.quiz {
-  /* TODO: Write the style for the quiz div */
+  /* TODO: [LVL1-QUIZ] Write the style for the logo image */
 }
 
 .submit {
-  /* TODO: Write the style for the submit button */
+  /* TODO: [LVL1-QUIZ] Write the style for the submit button */
+}
+
+.quiz {
+  /* TODO: [LVL1-QUIZ] Write the style for the quiz div */
 }
 
 .result {
   display: none;
 
-  /* TODO: Write the style for the quiz result */
+  /* TODO: [LVL1-QUIZ] Write the style for the quiz result */
 }

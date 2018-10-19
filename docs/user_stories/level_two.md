@@ -25,6 +25,8 @@ In addition to that, we would like to give ability to the user to select a quiz 
 
     ![question mockup](../img/question.png)
 
+!> Search for the `[LVL2-QUIZ]` tags across the project; They will help you as a guide to focus on this level.
+
 !> Run the backend test suite using `bundle exec rspec --tag level_two` and do your best to cover all the specs.
 
 [Next challenge](user_stories/level_three.md)
