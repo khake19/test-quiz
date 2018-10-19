@@ -6,9 +6,8 @@ describe Api::V1::QuizAttemptsController, type: :controller, level_three: true d
     let(:attempts) { create_list :quiz_attempt, 3, quiz: quiz }
 
     it 'route not found if question id blank' do
-      expect{
-        get :index, format: :json
-      }.to raise_error(ActionController::RoutingError)
+      get :index, format: :json
+      expect(respone).to have_http_status(:not_found)
     end
 
     it 'returns a JSON with correct data' do

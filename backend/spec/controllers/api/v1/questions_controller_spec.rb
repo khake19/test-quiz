@@ -25,13 +25,15 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
     it 'returns a JSON with correct data' do
       get :show, params: { id: question.id }, format: :json
 
-      expect(response.body).to eq(question.to_json)
+      expect(JSON.parse(response.body)).to eq(question.as_json)
     end
 
-    it 'returns with HTTP status not found if id is invalid' do
-      get :show, params: { id: 123456787899 }, format: :json
+    context 'when id is invalid' do
+      it 'returns with HTTP status not found' do
+        get :show, params: { id: 123456787899 }, format: :json
      
-      expect(response).to have_http_status(:not_found)
+        expect(response).to have_http_status(:not_found)
+      end
     end
   end
 
@@ -61,11 +63,6 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
         expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
       end
     end
-
-    it 'implements strong attributes' do
-      should permit(:content, :answer).
-        for(:create)
-    end
   end
 
   describe '#update' do
@@ -93,11 +90,6 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
         expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
       end
     end
-
-    it 'implements strong attributes' do
-      should permit(:content, :answer).
-        for(:update)
-    end
   end
 
   describe '#destroy' do
@@ -116,16 +108,10 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
     end
 
     context 'with invalid id' do
-      it 'raises routing error' do
-        expect{
-          delete :destroy, format: :json
-        }.to raise_error(ActionController::RoutingError)
-      end
-
-      it 'does not return any JSON' do
+      it 'returns HTTP status not found' do
         delete :destroy, params: { id: '1234' }, format: :json
 
-        expect(JSON.parse{response.body}).to eq({})
+        expect(response).to have_http_status(:not_found)
       end
     end
   end
@@ -135,7 +121,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns JSON with success message' do
         post :answer, params: { id: question.id, question: { answer: question.answer } }, format: :json
 
-        expect(JSON.parse{response.body}).to eq({status: 'success'})
+        expect(JSON.parse{response.body}).to eq({ status: 'success', correct: true })
       end
     end
 
@@ -143,7 +129,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns JSON with success message' do
         post :answer, params: { id: question.id, question: { answer: 'sdasd' } }, format: :json
 
-        expect(JSON.parse{response.body}).to eq({status: 'success'})
+        expect(JSON.parse{response.body}).to eq({ status: 'success', correct: false })
       end
     end
 
@@ -151,7 +137,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'render JSON with error message' do
         post :answer, params: { id: question.id, question: { answer: '' } }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
+        expect(JSON.parse(response.body)).to eq({ message: 'failed', errors: { content: "can't be blank" } })
       end
     end
   end
