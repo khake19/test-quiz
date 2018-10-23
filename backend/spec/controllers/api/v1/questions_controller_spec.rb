@@ -52,7 +52,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns success message in JSON format' do
         post :create, params: { question: build_param.to_json }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({message: 'success'})
+        expect(JSON.parse(response.body)).to eq({'message' => 'success'})
       end
     end
 
@@ -62,7 +62,8 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
 
         post :create, params: { question: build_param.to_json }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
+        expect(JSON.parse(response.body)).to eq({'message' => 'failed',
+                                                  'errors' => { 'content' => "can't be blank" }})
       end
     end
   end
@@ -81,7 +82,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns success message in JSON format' do
         put :update, params: { id: question.id, question: { content: quote } }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({message: 'success'})
+        expect(JSON.parse(response.body)).to eq({'message' => 'success'})
       end
     end
 
@@ -89,7 +90,8 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'invalid data render json message' do
         put :update, params: { id: question.id, question: { content: nil } }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({message: 'failed', errors: { content: "can't be blank" }})
+        expect(JSON.parse(response.body)).to eq({'message' => 'failed',
+                                                  'errors' => { 'content' => "can't be blank" }})
       end
     end
   end
@@ -105,7 +107,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns success message and deleted id in JSON format' do
         delete :destroy, params: { id: question.id }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({status: 'success', id: question.id})
+        expect(JSON.parse(response.body)).to eq({'status' => 'success', 'id' => question.id})
       end
     end
 
@@ -123,7 +125,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns JSON with success message' do
         post :answer, params: { id: question.id, question: { answer: question.answer } }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({ status: 'success', correct: true })
+        expect(JSON.parse(response.body)).to eq({ 'status' => 'success', 'correct' => true })
       end
     end
 
@@ -131,7 +133,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns JSON with success message' do
         post :answer, params: { id: question.id, question: { answer: 'sdasd' } }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({ status: 'success', correct: false })
+        expect(JSON.parse(response.body)).to eq({ 'status' => 'success', 'correct' => false })
       end
     end
 
@@ -139,7 +141,8 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'render JSON with error message' do
         post :answer, params: { id: question.id, question: { answer: '' } }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({ message: 'failed', errors: { content: "can't be blank" } })
+        expect(JSON.parse(response.body)).to eq({'message' => 'failed',
+                                                  'errors' => { 'content' => "can't be blank" } })
       end
     end
   end
