@@ -22,7 +22,7 @@ bundle install
 ## Setup database
 
 ```
-bundle exec run rails db:create db:migrate db:seed
+bundle exec rails db:create db:migrate db:seed
 ```
 
 ## Start server
