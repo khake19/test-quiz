@@ -97,13 +97,15 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
   end
 
   describe '#destroy' do
-    it 'able to destroy data if id valid' do
-      delete :destroy, params: { id: question.id }, format: :json
-
-      expect(Question.find(question.id)).to be_nil
-    end
+    let!(:question) { create :question }
 
     context 'with valid id' do
+      it 'destroys question' do
+        expect {
+          delete :destroy, params: { id: question.id }, format: :json
+        }.to change{ Question.count }.by(-1)
+      end
+
       it 'returns success message and deleted id in JSON format' do
         delete :destroy, params: { id: question.id }, format: :json
 
