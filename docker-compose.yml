@@ -2,9 +2,6 @@ version: '3'
 services:
   db:
     image: postgres:10.4
-    environment:
-      POSTGRES_USER: quizmaster
-      POSTGRES_PASSWORD: qU1zMast3R
     volumes:
       - ./backend/tmp/db:/var/lib/postgresql/data
   backend:
@@ -14,8 +11,7 @@ services:
       - db
     environment:
       DATABASE_HOST: db
-      DATABASE_USERNAME: quizmaster
-      DATABASE_PASSWORD: qU1zMast3R
+      DATABASE_USERNAME: postgres
     volumes:
       - ./backend:/app
     ports:
