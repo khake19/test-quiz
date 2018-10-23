@@ -110,7 +110,7 @@ describe Api::V1::QuizzesController, type: :controller, level_two: true, level_t
     it 'valid id render json message' do
       delete :destroy, params: { id: quiz.id }, format: :json
 
-      expect(JSON.parse{response.body}).to eq({ status: 'success', id: quiz.id })
+      expect(JSON.parse(response.body)).to eq({ status: 'success', id: quiz.id })
     end
 
     it 'invalid id returns HTTP status not found' do
