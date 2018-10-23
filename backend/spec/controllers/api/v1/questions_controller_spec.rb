@@ -25,13 +25,15 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
     it 'returns a JSON with correct data' do
       get :show, params: { id: question.id }, format: :json
 
-      expect(JSON.parse(response.body)).to eq(question.as_json)
+      expect(JSON.parse(response.body)).to include('id' => question.id,
+                                                    'content' => question.content,
+                                                    'answer' => question.answer)
     end
 
     context 'when id is invalid' do
       it 'returns with HTTP status not found' do
         get :show, params: { id: 123456787899 }, format: :json
-     
+
         expect(response).to have_http_status(:not_found)
       end
     end
