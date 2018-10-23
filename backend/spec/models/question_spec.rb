@@ -22,11 +22,11 @@ describe Question, type: :model do
 
   describe "#check_answer", level_one: true, level_two: true, level_three: true do
     it "is false if the answer is not valid" do
-      expect(question.check_answer(100)).to be(false)
+      expect(question.check_answer('100')).to be(false)
     end
 
     it "is number to number to word insensitive" do
-      expect(question.check_answer(10)).to be(true)
+      expect(question.check_answer('10')).to be(true)
     end
 
     it "is number to word to number insensitive" do
