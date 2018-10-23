@@ -103,7 +103,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns success message and deleted id in JSON format' do
         delete :destroy, params: { id: question.id }, format: :json
 
-        expect(JSON.parse{response.body}).to eq({status: 'success', id: question.id})
+        expect(JSON.parse(response.body)).to eq({status: 'success', id: question.id})
       end
     end
 
@@ -121,7 +121,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns JSON with success message' do
         post :answer, params: { id: question.id, question: { answer: question.answer } }, format: :json
 
-        expect(JSON.parse{response.body}).to eq({ status: 'success', correct: true })
+        expect(JSON.parse(response.body)).to eq({ status: 'success', correct: true })
       end
     end
 
@@ -129,7 +129,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns JSON with success message' do
         post :answer, params: { id: question.id, question: { answer: 'sdasd' } }, format: :json
 
-        expect(JSON.parse{response.body}).to eq({ status: 'success', correct: false })
+        expect(JSON.parse(response.body)).to eq({ status: 'success', correct: false })
       end
     end
 
