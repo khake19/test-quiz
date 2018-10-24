@@ -16,18 +16,19 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
   end
 
   describe '#show' do
-    it 'responds with a success HTTP status' do
-      get :show, params: { id: question.id }, format: :json
+    context 'when id is valid' do
+      it 'responds with a success HTTP status' do
+        get :show, params: { id: question.id }, format: :json
 
-      expect(response).to have_http_status(:success)
-    end
+        expect(response).to have_http_status(:success)
+      end
 
-    it 'returns a JSON with correct data' do
-      get :show, params: { id: question.id }, format: :json
-
-      expect(JSON.parse(response.body)).to include('id' => question.id,
-                                                    'content' => question.content,
-                                                    'answer' => question.answer)
+      it 'returns a JSON with correct data' do
+        get :show, params: { id: question.id }, format: :json
+        expect(JSON.parse(response.body)).to include('id' => question.id,
+                                                      'content' => question.content,
+                                                      'answer' => question.answer)
+      end
     end
 
     context 'when id is invalid' do
@@ -42,15 +43,14 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
   describe '#create' do
     let(:build_param) { build :question }
 
-    it 'able to create data' do
-      post :create, params: { question: build_param.to_json }, format: :json
-
-      expect(Question.last.content).to eq(build_param.content)
-    end
-
     context 'with valid data' do
+      it 'adds question record' do
+        post :create, params: { question: build_param.as_json }, format: :json
+        expect(Question.last.content).to eq(build_param.content)
+      end
+
       it 'returns success message in JSON format' do
-        post :create, params: { question: build_param.to_json }, format: :json
+        post :create, params: { question: build_param.as_json }, format: :json
 
         expect(JSON.parse(response.body)).to eq({'message' => 'success'})
       end
@@ -60,7 +60,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns error message in JSON format' do
         build_param.content = nil
 
-        post :create, params: { question: build_param.to_json }, format: :json
+        post :create, params: { question: build_param.as_json }, format: :json
 
         expect(JSON.parse(response.body)).to eq({'message' => 'failed',
                                                   'errors' => { 'content' => "can't be blank" }})
@@ -69,16 +69,16 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
   end
 
   describe '#update' do
+    let!(:question) { create :question, content: 'What is the number after 1?' }
     let(:quote) { Faker::Matz.quote }
 
-    it 'able to update data' do
-      put :update, params: { id: question.id, question: { content: quote } }, format: :json
-
-      question.reload
-      expect(question.content).to eq(quote)
-    end
-
     context 'with valid data' do
+      it 'updates question data' do
+        expect {
+          put :update, params: { id: question.id, question: { content: quote } }, format: :json
+        }.to change{ question.reload.content }.from('What is the number after 1?').to(quote)
+      end
+
       it 'returns success message in JSON format' do
         put :update, params: { id: question.id, question: { content: quote } }, format: :json
 
@@ -87,7 +87,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
     end
 
     context 'with invalid data' do
-      it 'invalid data render json message' do
+      it 'renders error message in JSON format' do
         put :update, params: { id: question.id, question: { content: nil } }, format: :json
 
         expect(JSON.parse(response.body)).to eq({'message' => 'failed',
