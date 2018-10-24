@@ -20,7 +20,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'responds with a success HTTP status' do
         get :show, params: { id: question.id }, format: :json
 
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'returns a JSON with correct data' do
@@ -109,7 +109,8 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns success message and deleted id in JSON format' do
         delete :destroy, params: { id: question.id }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({'status' => 'success', 'id' => question.id})
+        expect(JSON.parse(response.body)).to eq({'id' => question.id})
+        expect(response).to have_http_status(:success)
       end
     end
 
@@ -127,7 +128,8 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns JSON with success message' do
         post :answer, params: { id: question.id, question: { answer: question.answer } }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({ 'status' => 'success', 'correct' => true })
+        expect(JSON.parse(response.body)).to include({ 'correct' => true })
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -135,7 +137,8 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns JSON with success message' do
         post :answer, params: { id: question.id, question: { answer: 'sdasd' } }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({ 'status' => 'success', 'correct' => false })
+        expect(JSON.parse(response.body)).to include({ 'correct' => false })
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -144,7 +147,8 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
         post :answer, params: { id: question.id, question: { answer: '' } }, format: :json
 
         expect(JSON.parse(response.body)).to eq({'message' => 'failed',
-                                                  'errors' => { 'content' => "can't be blank" } })
+                                                  'errors' => { 'answer' => "can't be blank" } })
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
