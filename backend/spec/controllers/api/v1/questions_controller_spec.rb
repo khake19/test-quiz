@@ -87,7 +87,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
     end
 
     context 'with invalid data' do
-      it 'invalid data render json message' do
+      it 'renders error message in JSON format' do
         put :update, params: { id: question.id, question: { content: nil } }, format: :json
 
         expect(JSON.parse(response.body)).to eq({'message' => 'failed',
