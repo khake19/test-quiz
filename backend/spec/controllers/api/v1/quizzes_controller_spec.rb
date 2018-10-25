@@ -12,62 +12,68 @@ describe Api::V1::QuizzesController, type: :controller, level_two: true, level_t
       get :index, format: :json
 
       expect(JSON.parse(response.body).count).to eq(3)
+      expect(response).to have_http_status(:ok)
     end
   end
 
   describe '#show' do
-    let(:question) { create :question }
+    let(:question) { quiz.questions.first }
 
-    let(:quiz_data) {{ quiz: quiz }}
-    let(:question_data) {{ questions: [question] }}
+    context 'with valid quiz id' do
+      it 'include quiz data' do
+        get :show, params: { id: quiz.id }, format: :json
 
-    it 'include quiz data' do
-      get :show, params: { id: quiz.id }, format: :json
+        expect(JSON.parse(response.body))
+          .to include('quiz' => hash_including('description' => quiz.description, 'name' => quiz.name))
 
-      expect(JSON.parse(response.body)).to include(quiz_data.as_json)
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'include question data' do
+        get :show, params: { id: quiz.id }, format: :json
+
+        expect(JSON.parse(response.body))
+          .to include('quiz' => hash_including('questions' => [{ 'content' => question.content }]))
+      end
     end
 
-    it 'include question data' do
-      get :show, params: { id: quiz.id }, format: :json
-
-      expect(JSON.parse(response.body)).to include(question_data.as_json)
-    end
-
-    it 'id is not exist' do
-      get :show, params: { id: 123456787899 }, format: :json
-      expect(response).to have_http_status(:not_found)
+    context 'with invalid quiz id' do
+      it 'returns http status not found' do
+        get :show, params: { id: 123456787899 }, format: :json
+        expect(response).to have_http_status(:not_found)
+      end
     end
   end
 
   describe '#create' do
-    let(:build_param) { build :quiz }
+    let(:build_param) { build :quiz, questions: [build(:question)] }
 
     it 'able to create quiz' do
-      post :create, params: { quiz: build_param.to_json }, format: :json
+      post :create, params: { quiz: build_param.as_json }, format: :json
 
-      expect(Quiz.last.name).to eq(build_param.name)
+      expect(response).to have_http_status(:created)
     end
 
     it 'render json' do
-      post :create, params: { question: build_param.to_json }, format: :json
+      post :create, params: { quiz: build_param.as_json }, format: :json
 
-      expect(JSON.parse(response.body)).to eq({message: 'success'})
+      expect(JSON.parse(response.body)).to eq({ 'message' => 'success' })
     end
 
     it 'invalid name should return error message' do
       build_param.name = nil
 
-      post :create, params: { question: build_param.to_json }, format: :json
+      post :create, params: { quiz: build_param.as_json }, format: :json
 
-      expect(JSON.parse(response.body)).to eq({ message: 'failed', errors: { name: "can't be blank" } })
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it 'invalid description should return error message' do
       build_param.description = nil
 
-      post :create, params: { question: build_param.to_json }, format: :json
+      post :create, params: { quiz: build_param.as_json }, format: :json
 
-      expect(JSON.parse(response.body)).to eq({ message: 'failed', errors: { description: "can't be blank" } })
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 
@@ -81,36 +87,37 @@ describe Api::V1::QuizzesController, type: :controller, level_two: true, level_t
       expect(quiz.name).to eq(quote)
     end
 
-    it 'render json if data is created' do
+    it 'render json if data is updated' do
       put :update, params: { id: quiz.id, quiz: { name: quote } }, format: :json
 
-      expect(JSON.parse(response.body)).to eq({ message: 'success' })
+      expect(response).to have_http_status(:ok)
     end
 
     it 'invalid name should return error message' do
       put :update, params: { id: quiz.id, quiz: { name: '' } }, format: :json
 
-      expect(JSON.parse(response.body)).to eq({ message: 'failed', errors: { name: "can't be blank" } })
+      expect(response).to have_http_status(:unprocessable_entity)
     end
 
     it 'invalid description return error message' do
       put :update, params: { id: quiz.id, quiz: { description: '' } }, format: :json
 
-      expect(JSON.parse(response.body)).to eq({ message: 'failed', errors: { description: "can't be blank" } })
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 
   describe '#destroy' do
-    it 'valid id can destroy data' do
-      delete :destroy, params: { id: quiz.id }, format: :json
+    let!(:quiz_x) { create :quiz }
 
-      expect(Quiz.find(quiz.id)).to be_nil
+    it 'valid id can destroy data' do
+      expect { delete :destroy, params: { id: quiz_x.id }, format: :json }
+        .to change{ Quiz.count }.by(-1)
     end
 
     it 'valid id render json message' do
-      delete :destroy, params: { id: quiz.id }, format: :json
+      delete :destroy, params: { id: quiz_x.id }, format: :json
 
-      expect(JSON.parse(response.body)).to eq({ status: 'success', id: quiz.id })
+      expect(response).to have_http_status(:ok)
     end
 
     it 'invalid id returns HTTP status not found' do
