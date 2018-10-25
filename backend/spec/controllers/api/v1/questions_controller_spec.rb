@@ -52,7 +52,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns success message in JSON format' do
         post :create, params: { question: build_param.as_json }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({'message' => 'success'})
+        expect(response).to have_http_status(:created)
       end
     end
 
@@ -62,8 +62,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
 
         post :create, params: { question: build_param.as_json }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({'message' => 'failed',
-                                                  'errors' => { 'content' => "can't be blank" }})
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -82,7 +81,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns success message in JSON format' do
         put :update, params: { id: question.id, question: { content: quote } }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({'message' => 'success'})
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -90,8 +89,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'renders error message in JSON format' do
         put :update, params: { id: question.id, question: { content: nil } }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({'message' => 'failed',
-                                                  'errors' => { 'content' => "can't be blank" }})
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -109,7 +107,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns success message and deleted id in JSON format' do
         delete :destroy, params: { id: question.id }, format: :json
 
-        expect(JSON.parse(response.body)).to eq({'id' => question.id})
+        expect(JSON.parse(response.body)).to include('id' => question.id.to_s)
         expect(response).to have_http_status(:success)
       end
     end
@@ -145,9 +143,6 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
     context 'given blank answer' do
       it 'render JSON with error message' do
         post :answer, params: { id: question.id, question: { answer: '' } }, format: :json
-
-        expect(JSON.parse(response.body)).to eq({'message' => 'failed',
-                                                  'errors' => { 'answer' => "can't be blank" } })
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
