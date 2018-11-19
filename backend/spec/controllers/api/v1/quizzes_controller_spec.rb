@@ -33,7 +33,7 @@ describe Api::V1::QuizzesController, type: :controller, level_two: true, level_t
         get :show, params: { id: quiz.id }, format: :json
 
         expect(JSON.parse(response.body))
-          .to include('quiz' => hash_including('questions' => [{ 'content' => question.content }]))
+          .to include('questions' => JSON.parse(quiz.questions.to_json))
       end
     end
 
