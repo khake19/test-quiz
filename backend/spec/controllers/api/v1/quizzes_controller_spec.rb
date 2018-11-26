@@ -60,7 +60,7 @@ describe Api::V1::QuizzesController, type: :controller, level_two: true, level_t
       expect(JSON.parse(response.body)).to eq({ 'message' => 'success' })
     end
 
-    it 'invalid name should return error message' do
+    it 'cannot process unprocessable entity if name is nil' do
       build_param.name = nil
 
       post :create, params: { quiz: build_param.as_json }, format: :json
@@ -68,7 +68,7 @@ describe Api::V1::QuizzesController, type: :controller, level_two: true, level_t
       expect(response).to have_http_status(:unprocessable_entity)
     end
 
-    it 'invalid description should return error message' do
+    it 'cannot process unprocessable entity if description is nil' do
       build_param.description = nil
 
       post :create, params: { quiz: build_param.as_json }, format: :json
@@ -93,13 +93,13 @@ describe Api::V1::QuizzesController, type: :controller, level_two: true, level_t
       expect(response).to have_http_status(:ok)
     end
 
-    it 'invalid name should return error message' do
+    it 'cannot process unprocessable entity if name is nil' do
       put :update, params: { id: quiz.id, quiz: { name: '' } }, format: :json
 
       expect(response).to have_http_status(:unprocessable_entity)
     end
 
-    it 'invalid description return error message' do
+    it 'cannot process unprocessable entity if description is nil' do
       put :update, params: { id: quiz.id, quiz: { description: '' } }, format: :json
 
       expect(response).to have_http_status(:unprocessable_entity)
