@@ -27,6 +27,18 @@ In addition to that, we would like to give ability to the user to select a quiz 
 
     ![question mockup](../img/question.png)
 
-!> Run the backend test suite using `bundle exec rspec --tag level_two` and do your best to cover all the specs.
+### Unit Test
+
+!> We've provided unit test for backend side. Run the backend test suite using `bundle exec rspec --tag level_two` and do your best to cover all the specs.
+
+!> For the front end part, we don't use unit test. Please follow given mock up.
+
+### Reference
+
+* Quiz Model
+* Quiz Controller
+* Question Controller
+* Routes
+* Client page for managing quiz (App.jsx)
 
 [Next challenge](user_stories/level_three.md)

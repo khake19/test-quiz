@@ -15,6 +15,17 @@ Welcome! You must be the new one! You know the _Chief Technology Officer_? Well,
     ![question mockup](../img/question.png)
     *   Implement an answer-checking logic in the backend so that once the user provides an answer and submits, the app shall give immediate feedback on whether the answer provided is **correct** or **incorrect**
 
-!> Run the backend test suite using `bundle exec rspec --tag level_one` and do your best to cover all the specs.
+### Unit Test
+
+!> We've provided unit test for backend side. Run the backend test suite using `bundle exec rspec --tag level_one` and do your best to cover all the specs.
+
+!> For the front end part, we don't use unit test. Please follow given mock up.
+
+### Reference
+
+* Model Question
+* Controller Question
+* Route
+* Client page for answering question (App.jsx)
 
 [Next challenge](user_stories/level_two.md)
