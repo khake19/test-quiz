@@ -93,13 +93,13 @@ describe Api::V1::QuizzesController, type: :controller, level_two: true, level_t
       expect(response).to have_http_status(:ok)
     end
 
-    it 'cannot process unprocessable entity if name is nil' do
+    it 'cannot process unprocessable entity if name is empty' do
       put :update, params: { id: quiz.id, quiz: { name: '' } }, format: :json
 
       expect(response).to have_http_status(:unprocessable_entity)
     end
 
-    it 'cannot process unprocessable entity if description is nil' do
+    it 'cannot process unprocessable entity if description is empty' do
       put :update, params: { id: quiz.id, quiz: { description: '' } }, format: :json
 
       expect(response).to have_http_status(:unprocessable_entity)
