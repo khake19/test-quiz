@@ -107,7 +107,7 @@ describe Api::V1::QuestionsController, type: :controller, level_one: true, level
       it 'returns success message and deleted id in JSON format' do
         delete :destroy, params: { id: question.id }, format: :json
 
-        expect(JSON.parse(response.body)).to include('id' => question.id.to_s)
+        expect(JSON.parse(response.body)).to include('id' => question.id)
         expect(response).to have_http_status(:success)
       end
     end
