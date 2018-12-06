@@ -1,7 +1,5 @@
 #- [LVL1-QUIZ]
 class Question < ApplicationRecord
-  #Associations:
-  #- add association for quizzes
 
   #Validations:
   #- content and answer must be present

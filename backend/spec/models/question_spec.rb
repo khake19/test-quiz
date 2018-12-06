@@ -3,12 +3,6 @@ require 'rails_helper'
 describe Question, type: :model do
   let(:question)     { create(:question, content: "5+5", answer: "10" ) }
   let(:question_two) { create(:question, content: "What does U.S.A. mean", answer: "United States of America") }
-  let(:quiz)         { create(:quiz, questions: [question, question_two]) }
-  let(:quiz_two)     { create(:quiz, questions: [question]) }
-
-  context "association", level_two: true, level_three: true do
-    it { should have_and_belong_to_many(:quizzes) }
-  end
 
   context "validations", level_one: true, level_two: true, level_three: true do
     it "presence of content" do
