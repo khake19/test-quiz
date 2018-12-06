@@ -18,8 +18,7 @@ const App = () => (
         </Link>
       </div>
 
-      <Route exact path="/" component={Home} />
-      <Route path="/quiz" component={Quiz} />
+      <Route exact path="/" component={Quiz} />
     </div>
   </Router>
 );
@@ -43,15 +42,7 @@ const questions = [{
   answer: "7 dwarves",
 }]
 
-const Home = () => (
-  <nav className="home-navigation">
-    <ul>
-      <li><Link to="/quiz">Answer questions</Link></li>
-    </ul>
-  </nav>
-);
-
-const Quiz = ({question}) => (
+const Quiz = () => (
   <div className="quiz">
     <form>
       {
