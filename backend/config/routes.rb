@@ -1,3 +1,13 @@
 Rails.application.routes.draw do
-  # TODO: Please implement the best route structure according to the scenarios given in the test files.
+
+  namespace :api do
+    namespace :v1 do
+      resources :questions do
+        member do
+          post :answer
+        end
+      end
+    end
+  end
+
 end
