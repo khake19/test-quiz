@@ -23,14 +23,10 @@ const App = () => (
   </Router>
 );
 
-/**
- *  These questions are currently hardcoded.
- *  [LVL1-QUIZ]
- *  TODO: Get the question list from the API
- **/
+/* TODO: Get the question list from the API */
 const questions = [{
   id: 1,
-  content: "What is the capital of Malaysia?",
+  content: "What is the capital city of Malaysia?",
   answer: "Kuala Lumpur",
 },{
   id: 2,
@@ -38,54 +34,51 @@ const questions = [{
   answer: "26",
 },{
   id: 3,
-  content: "Who are snow white's friends?",
+  content: "Who are Snow White's friends?",
   answer: "7 dwarves",
 }]
 
-const Quiz = () => (
-  <div className="quiz">
-    <form>
-      {
-        /**
-          TODO:
-          [LVL1-QUIZ]
-          Quiz should show one question at a time and in random order.
-        **/
-      }
-      <QuizQuestionItem question={questions[0]} />
-      {
-        /**
-          TODO:
-          [LVL1-QUIZ]
-          Pressing "Submit" button should send the answers to the API
-        **/
-      }
-      <button type="submit" className="submit">Submit</button>
-    </form>
-  </div>
-);
+class Quiz extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-const QuizQuestionItem = ({question}) => (
-  <div className="quiz-item-container">
-    <div className = "question-container">
-      <strong className="question-title">Question</strong>
-      <div className="question-content">{question.content}</div>
-    </div>
-    <div className="answer-container">
-      <strong className="answer-title"> Answer</strong>
-      <input className="answer-space" type="text"/>
-      <div className="answer-result"> Correct
-        {
-          /**
-            TODO:
-            [LVL1-QUIZ]
-            Once user submits an answer,
-            we should show if their answer it correct or incorrect.
-          **/
-        }
+  onSubmit() {
+    /* TODO: Implement action to be taken when Submit is clicked */
+  }
+
+  onNext() {
+    /* TODO: Implement action to be taken when Next is clicked */
+  }
+
+  render() {
+    return (
+      <div className="quiz">
+        <form>
+
+          {/* TODO: Quiz should show one question at a time */}
+          <div className="quiz-item-container">
+            <div className = "question-container">
+              <strong className="question-title">Question</strong>
+              <div className="question-content">{questions[0].content}</div>
+            </div>
+
+            <div className="answer-container">
+              <strong className="answer-title">Answer</strong>
+              <input className="answer-space" type="text"/>
+
+              <div className="answer-result">
+                {/* TODO: Once user submits an answer, show result on whether their answer is correct or incorrect. */}
+              </div>
+            </div>
+          </div>
+
+          {/* TODO: Pressing "Submit" button should send the answers to the API */}
+          <button type="submit" className="submit">Submit</button>
+        </form>
       </div>
-    </div>
-  </div>
-)
+    );
+  }
+}
 
 export default App;
