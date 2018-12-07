@@ -4,7 +4,7 @@ describe Question, type: :model do
   let(:question)     { create(:question, content: "5+5", answer: "10" ) }
   let(:question_two) { create(:question, content: "What does U.S.A. mean", answer: "United States of America") }
 
-  context "validations", level_one: true, level_two: true, level_three: true do
+  context "validations" do
     it "presence of content" do
       should validate_presence_of(:content)
     end
@@ -14,7 +14,7 @@ describe Question, type: :model do
     end
   end
 
-  describe "#check_answer", level_one: true, level_two: true, level_three: true do
+  describe "#check_answer" do
     it "is false if the answer is not valid" do
       expect(question.check_answer('100')).to be(false)
     end
