@@ -6,7 +6,7 @@ Welcome! You must be the new one! You know the _Chief Technology Officer_? Well,
 
 *   **Implement endpoints for questions**
     *   We work using test-driven development and we have already set up the tests for you. You can check out `backend/spec/controllers/questions_controller_spec.rb` to see what's expected in your implementation of the endpoints. Please do **NOT** edit this file!
-    *   Open `backend/controllers/api/questions_controller.rb` and write the necessary code needed to make the tests pass.
+    *   Open `backend/controllers/questions_controller.rb` and write the necessary code needed to make the tests pass.
     *   You do **NOT** need to implement a view for this! You can populate data for your app by running these endpoints through your terminal.
 
 *   **Implement answer-checking logic in the Question Model**
