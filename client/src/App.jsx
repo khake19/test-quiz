@@ -41,6 +41,9 @@ const questions = [{
 class Quiz extends React.Component {
   constructor(props) {
     super(props);
+
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onNext = this.onNext.bind(this);
   }
 
   onSubmit() {
@@ -54,7 +57,7 @@ class Quiz extends React.Component {
   render() {
     return (
       <div className="quiz">
-        <form>
+        <form onSubmit={this.onSubmit}>
 
           {/* TODO: Quiz should show one question at a time */}
           <div className="quiz-item-container">
@@ -73,8 +76,8 @@ class Quiz extends React.Component {
             </div>
           </div>
 
-          {/* TODO: Pressing "Submit" button should send the answers to the API */}
           <button type="submit" className="submit">Submit</button>
+          <a href="#" className="next" onClick={this.onNext}>Next ></a>
         </form>
       </div>
     );
