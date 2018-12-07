@@ -173,3 +173,17 @@ li a:hover {
   right: 1%;
   font-weight: 600;
 }
+
+.submit:hover {
+  cursor: pointer;
+}
+
+.next {
+  color: #50bbf9;
+  font-size: 12px;
+  font-weight: 600;
+  float: right;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  text-decoration: none;
+}
