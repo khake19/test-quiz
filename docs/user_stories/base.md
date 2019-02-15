@@ -9,10 +9,6 @@ Welcome! You must be the new one! You know the _Chief Technology Officer_? Well,
     *   Open `backend/controllers/questions_controller.rb` and write the necessary code needed to make the tests pass.
     *   You do **NOT** need to implement a view for this! You can populate data for your app by running these endpoints through your terminal.
 
-*   **Implement answer-checking logic in the Question Model**
-    *   Check out the tests written in `backend/spec/models/question_spec.rb` to see the specifications of the answer checker. Again, please do **NOT** edit this file.
-    *   Write the code in `backend/models/question.rb` to make the tests pass.
-
 *   **Implement the Quiz component for the view**
     *   `client/src/App.jsx` is the only file you'll need to work on. There are comments written there to guide you on what you need to do.
     *   The question currently shown is hard-coded. Show the actual questions present in the database by fetching them using the endpoints you implemented in the backend.
@@ -20,6 +16,11 @@ Welcome! You must be the new one! You know the _Chief Technology Officer_? Well,
     *   Clicking the `Submit` button will make the app check if the answer provided by the user is correct or not. The result should be shown to the user right away.
 
     ![question mockup](../img/question.png)
+
+*   **Implement answer-checking logic in the Question Model**
+    *   Check out the tests written in `backend/spec/models/question_spec.rb` to see the specifications of the answer checker. Again, please do **NOT** edit this file.
+    *   Write the code in `backend/models/question.rb` to make the tests pass.
+
 
 ### Unit Test
 
