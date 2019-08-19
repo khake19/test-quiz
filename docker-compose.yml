@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   db:
     image: postgres:10.4
@@ -14,6 +14,7 @@ services:
       DATABASE_USERNAME: postgres
     volumes:
       - ./backend:/app
+      - ./backend/vendor/bundle:/vendor/bundle
     ports:
       - 3000:3000
   client:
