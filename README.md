@@ -38,7 +38,7 @@ Exam specifications are now available at http://localhost:3030.
 
 ## FAQ
 ### _Can I search the internet for help?_
-Yes! Just be wary of copy and pasting code you don't understand.
+Yes! Just be wary of copy and pasting code you don't understand because we will ask you.
 
 ### _Can I install third-party packages to help me?_
-Yes again! But if you have time (and want the extra challenge), see if you can do it yourself! Just make sure to prioritize finishing everything first.
+Yes! But if you have time (and want the extra challenge), see if you can do it yourself! Just make sure to prioritize finishing everything first.
