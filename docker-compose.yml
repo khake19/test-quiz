@@ -27,7 +27,7 @@ services:
       - 8080:8080
   docs:
     build: ./docs
-    command: ./node_modules/.bin/docsify serve -p 3030 -b 0.0.0.0
+    command: yarn start
     volumes:
       - ./docs:/app
       - /app/node_modules
