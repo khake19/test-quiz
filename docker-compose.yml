@@ -33,3 +33,9 @@ services:
       - /app/node_modules
     ports:
       - 3030:3030
+  ide:
+    image: theiaide/theia
+    volumes:
+      - ./:/home/project:cached
+    ports:
+      - 3001:3000
