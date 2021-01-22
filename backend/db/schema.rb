@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2018_08_29_235121) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "questions", force: :cascade do |t|
     t.string "content"
     t.string "answer"
@@ -24,14 +21,14 @@ ActiveRecord::Schema.define(version: 2018_08_29_235121) do
   end
 
   create_table "questions_quizzes", id: false, force: :cascade do |t|
-    t.bigint "quiz_id", null: false
-    t.bigint "question_id", null: false
+    t.integer "quiz_id", null: false
+    t.integer "question_id", null: false
   end
 
   create_table "quiz_attempts", force: :cascade do |t|
     t.integer "correct_answers"
     t.integer "incorrect_answers"
-    t.bigint "quiz_id"
+    t.integer "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_quiz_attempts_on_quiz_id"
@@ -47,7 +44,7 @@ ActiveRecord::Schema.define(version: 2018_08_29_235121) do
   create_table "user_answers", force: :cascade do |t|
     t.string "answer"
     t.boolean "status"
-    t.bigint "question_id"
+    t.integer "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_user_answers_on_question_id"
