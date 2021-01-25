@@ -6,6 +6,7 @@ services:
     volumes:
       - ./docs:/app
       - /app/node_modules
+    restart: always
   ide:
     build: ./
     environment:
@@ -14,21 +15,21 @@ services:
     volumes:
       - ./backend:/home/project/backend:cached
       - ./client:/home/project/client:cached
+    restart: always
   diff:
     build: ./diff
     command: yarn start
     volumes:
-      - ./.git:/usr/src/app/.git
+      - ./.git:/usr/src/app/full/.git
       - /usr/src/app/node_modules
+    restart: always
   nginx:
     image: nginx:latest
     container_name: production_nginx
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./htpasswd:/etc/nginx/htpasswd
     ports:
       - 80:80
       - 443:443
-    depends_on:
-      - docs
-      - ide
-      - diff
+    restart: always
