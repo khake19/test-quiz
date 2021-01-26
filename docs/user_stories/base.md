@@ -2,6 +2,16 @@
 
 Welcome! You must be the new one! You know the _Chief Technology Officer_? Well, he loves creating cool applications! Actually, we have a bare-bones project that needs some tweaks, but all of our devs are busy right now. Would you mind throwing us a hand? Thanks!
 
+### Avaiable Ports and Proxies
+
+*   **/backend**
+    * Run rails app at host `0.0.0.0` port `4000`
+    * proxied at `https://backend.and.click` and `https://client.and.click/backend/`
+
+*   **/client**
+    * Just run `yarn start`
+    * proxied at `https://client.and.click`
+
 ### Objectives
 
 *   **Implement endpoints for questions**
