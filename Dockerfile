@@ -1,6 +1,7 @@
 FROM theiaide/theia
 USER root
 
+# Basic Package
 RUN apk update && apk upgrade && apk add curl wget bash
 RUN apk add \
   ruby \
@@ -16,7 +17,6 @@ RUN apk add \
   sqlite \
   sqlite-dev \
   socat
-RUN rm -rf /var/cache/apk/*
-RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)"
 
-# USER theia
+# clean apk caches
+RUN rm -rf /var/cache/apk/*

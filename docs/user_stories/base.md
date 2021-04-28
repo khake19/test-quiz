@@ -5,7 +5,7 @@ Welcome! You must be the new one! You know the _Chief Technology Officer_? Well,
 ### Avaiable Ports and Proxies
 
 *   **/backend**
-    * Run rails app at host `0.0.0.0` port `4000`
+    * Just run `bundle exec bin/start`
     * proxied at `https://backend.and.click` and `https://client.and.click/backend/`
 
 *   **/client**
@@ -34,6 +34,6 @@ Welcome! You must be the new one! You know the _Chief Technology Officer_? Well,
 
 ### Unit Test
 
-!> We've provided unit test for backend side. Run the backend test suite using `bundle exec rspec` and do your best to cover all the specs.
+!> We've provided unit test for backend side. Run the backend test suite using `bundle exec bin/test` and do your best to cover all the specs.
 
 !> For the front end part, we don't use unit test. Please follow the given mock up.
