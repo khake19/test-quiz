@@ -38,50 +38,41 @@ const questions = [{
   answer: "7 dwarves",
 }]
 
-class Quiz extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onNext = this.onNext.bind(this);
-  }
-
-  onSubmit() {
+function Quiz() {
+  function onSubmit() {
     /* TODO: Implement action to be taken when Submit is clicked */
   }
 
-  onNext() {
+  function onNext() {
     /* TODO: Implement action to be taken when Next is clicked */
   }
 
-  render() {
-    return (
-      <div className="quiz">
-        <form onSubmit={this.onSubmit}>
+  return (
+    <div className="quiz">
+      <form onSubmit={onSubmit}>
 
-          {/* TODO: Quiz should show one question at a time */}
-          <div className="quiz-item-container">
-            <div className = "question-container">
-              <strong className="question-title">Question</strong>
-              <div className="question-content">{questions[0].content}</div>
-            </div>
-
-            <div className="answer-container">
-              <strong className="answer-title">Answer</strong>
-              <input className="answer-space" type="text"/>
-
-              <div className="answer-result">
-                {/* TODO: Once user submits an answer, show result on whether their answer is correct or incorrect. */}
-              </div>
-            </div>
+        {/* TODO: Quiz should show one question at a time */}
+        <div className="quiz-item-container">
+          <div className = "question-container">
+            <strong className="question-title">Question</strong>
+            <div className="question-content">{questions[0].content}</div>
           </div>
 
-          <button type="submit" className="submit">Submit</button>
-          <a href="#" className="next" onClick={this.onNext}>Next ></a>
-        </form>
-      </div>
-    );
-  }
+          <div className="answer-container">
+            <strong className="answer-title">Answer</strong>
+            <input className="answer-space" type="text"/>
+
+            <div className="answer-result">
+              {/* TODO: Once user submits an answer, show result on whether their answer is correct or incorrect. */}
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" className="submit">Submit</button>
+        <a href="#" className="next" onClick={onNext}>Next &gt;</a>
+      </form>
+    </div>
+  );
 }
 
 export default App;
