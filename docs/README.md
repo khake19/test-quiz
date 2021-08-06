@@ -18,14 +18,6 @@ Exam specifications are now available at http://localhost:3030.
 
 ### Manual
 
-If using `npm`:
-
-```
-npm install && npm start
-```
-
-If using `yarn`:
-
 ```
 yarn install && yarn start
 ```
