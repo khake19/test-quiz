@@ -11,22 +11,10 @@ Move to `client/` directory and perform the following setup steps
 ## Install dependencies
 
 ```
-npm install
-```
-
-or if you prefer `yarn`,
-
-```
 yarn install
 ```
 
 ## Start the application
-
-```
-npm start
-```
-
-or
 
 ```
 yarn start
