@@ -11,7 +11,6 @@ Welcome! You must be the new one! You know the _Chief Technology Officer_? Well,
 
 *   **Implement the Quiz component for the view**
     *   `client/src/App.jsx` is the only file you'll need to work on. There are comments written there to guide you on what you need to do.
-        *   The component in `client/src/App.jsx` is a function component. If you prefer to work with class components, feel free to copy the contents of `client/src/optional/AppClassComponent.jsx` to `client/src/App.jsx`
     *   The question currently shown is hard-coded. Show the actual questions present in the database by fetching them using the endpoints you implemented in the backend.
     *   Show only one question at a time! The `Next` button should allow the user of the app to go from one question to another.
     *   Clicking the `Submit` button will make the app check if the answer provided by the user is correct or not. The result should be shown to the user right away.
