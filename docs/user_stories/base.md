@@ -2,6 +2,16 @@
 
 Welcome! You must be the new one! You know the _Chief Technology Officer_? Well, he loves creating cool applications! Actually, we have a bare-bones project that needs some tweaks, but all of our devs are busy right now. Would you mind throwing us a hand? Thanks!
 
+### Avaiable Ports and Proxies
+
+*   **/backend**
+    * Just run `bundle exec bin/start`
+    * proxied at `https://backend.and.click` and `https://client.and.click/backend/`
+
+*   **/client**
+    * Just run `yarn start`
+    * proxied at `https://client.and.click`
+
 ### Objectives
 
 *   **Implement endpoints for questions**
@@ -24,6 +34,6 @@ Welcome! You must be the new one! You know the _Chief Technology Officer_? Well,
 
 ### Unit Test
 
-!> We've provided unit test for backend side. Run the backend test suite using `bundle exec rspec` and do your best to cover all the specs.
+!> We've provided unit test for backend side. Run the backend test suite using `bundle exec bin/test` and do your best to cover all the specs.
 
 !> For the front end part, we don't use unit test. Please follow the given mock up.

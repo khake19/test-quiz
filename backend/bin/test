@@ -1,0 +1,2 @@
+printf "\nTest file: backend/spec/controllers/questions_controller_spec.rb\n\n"
+bundle exec bin/rspec spec/controllers/questions_controller_spec.rb
