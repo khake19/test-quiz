@@ -29,7 +29,7 @@ Exam specifications are now available at http://localhost:3030.
 
 ## Setup components
 
-The exam app has 2 components, `client` and `backend`. Check the setup instructions by clicking the links under **Setup** in the sidebar.
+The exam app has 2 components, `client` and `backend`. Check the setup instructions by clicking the links under **User Stories**  in the sidebar.
 
 ## Exam specifications
 
