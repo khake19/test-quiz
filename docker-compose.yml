@@ -10,8 +10,12 @@ services:
   ide:
     build: ./
     environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Japan
       - BUNDLE_PATH=/home/project/backend/vendor/bundle
       - GEM_HOME=/home/project/backend/vendor/bundle
+      - DEFAULT_WORKSPACE=/home/project
     volumes:
       - ./backend:/home/project/backend:cached
       - ./client:/home/project/client:cached
